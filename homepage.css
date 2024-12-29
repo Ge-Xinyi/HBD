@@ -1,0 +1,67 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffd700; /* 根据图片中的黄色调整背景色 */
+}
+
+header {
+    background-color: #ff8c00; /* 橙色背景 */
+    color: white;
+    font-size: 16px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0; /* 增加上下内边距使导航栏更高 */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    margin: 0 auto;
+    display: table; /* 居中导航项 */
+}
+
+nav ul li {
+    display: table-cell;
+    text-align: center;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    font-size: 20px;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #ffa500;
+}
+
+.image-slider {
+    margin-top: 60px; /* 留出导航栏空间，根据导航栏的实际高度调整 */
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px; /* 固定图片高度 */
+}
+
+.image-slider img {
+    max-width: 630px;
+    max-height: 420px; 
+    display: none; /* 默认不显示图片，通过JavaScript控制显示 */
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 确保图片完全居中 */
+}
+
+.image-slider img:first-child {
+    display: block; /* 显示第一张图片 */
+}
