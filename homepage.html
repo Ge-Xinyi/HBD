@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MangoJumpHome</title>
+    <link rel="stylesheet" href="homepage.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">live</a></li>
+                <li><a href="#">演出資訊</a></li>
+                <li><a href="#">音樂</a></li>
+                <li><a href="#">團員</a></li>
+                <li><a href="#">聯繫</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="image-slider">
+        <img src="./img/homepage/img1.png" alt="img1">
+        <img src="./img/homepage/img2.jpg" alt="img2">
+        <img src="./img/homepage/img3.png" alt="img3">
+        <img src="./img/homepage/img4.jpg" alt="img4">
+    </div>
     <h1>Welcome!</h1>
     <p>web based on GitHub Pages</p>
 </body>
 </html>
+
+
+<script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let slides = document.querySelectorAll('.image-slider img');
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        slides[slideIndex-1].style.display = "block";  
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+</script>
