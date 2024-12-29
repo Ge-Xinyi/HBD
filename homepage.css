@@ -9,6 +9,7 @@ header {
     background-color: #ff8c00; /* 橙色背景 */
     color: white;
     font-size: 16px;
+    font-weight: 600;
     position: fixed;
     width: 100%;
     top: 0;
