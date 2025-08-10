@@ -1,0 +1,182 @@
+:root{
+  --pink:#ffd9e6;
+  --hot:#ff6fa7;
+  --blue:#a5d8ff;
+  --soft:#fff7fb;
+  --mint:#c9f2e4;
+  --ink:#444;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Nunito", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  color:var(--ink);
+  background: radial-gradient(1200px 600px at 20% -10%, #fff 0%, var(--pink) 60%, #ffeef7 100%);
+  overflow-x:hidden;
+}
+
+/* 背景 */
+.bg-decor::before,
+.bg-decor::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,.7) 0 6px, transparent 7px),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,.6) 0 5px, transparent 6px),
+    radial-gradient(circle at 30% 80%, rgba(255,255,255,.5) 0 4px, transparent 5px);
+  animation: floaty 14s linear infinite;
+  opacity:.6;
+}
+.bg-decor::after{ animation-duration:20s; filter:hue-rotate(20deg) }
+
+@keyframes floaty{
+  from{transform:translateY(0)}
+  to{transform:translateY(-120px)}
+}
+
+.site-header{
+  text-align:center;
+  padding:32px 16px 8px;
+}
+.site-header h1{
+  margin:0 0 6px;
+  font-size: clamp(28px, 6vw, 56px);
+  color:#ff72a2;
+  text-shadow: 0 4px 0 #fff, 0 8px 20px rgba(255,114,162,.35);
+}
+.site-header p{
+  margin:0;
+  opacity:.8;
+  font-size:18px;
+}
+
+.stage{
+  max-width:900px;
+  margin: 10px auto 60px;
+  padding: 20px;
+  display:grid;
+  place-items:center;
+}
+.mascot{
+  width:min(80vw, 520px);
+  height:auto;
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  transition: transform .25s ease, filter .25s ease;
+  cursor:pointer;
+  background:#fff;
+}
+.mascot:hover{ transform:scale(1.03) rotate(-1deg) }
+.mascot:active{ transform:scale(0.98) }
+
+.btn{
+  margin-top:18px;
+  padding:12px 22px;
+  border-radius:999px;
+  border:0;
+  background:#fff;
+  box-shadow:var(--shadow);
+  font-weight:700;
+  font-size:16px;
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover{ transform:translateY(-2px) }
+.btn:active{ transform:translateY(0) scale(.98) }
+.btn.primary{ background:linear-gradient(180deg, #ffe0ef, #ffb9d4) }
+.btn.danger{ background:linear-gradient(180deg, #ffd9d9, #ffb3b3) }
+.hidden{ display:none !important }
+
+/* 弹窗 */
+.modal{
+  position:fixed; inset:0;
+  display:grid; place-items:center;
+  background:rgba(255, 192, 220, .30);
+  backdrop-filter: blur(4px);
+  opacity:0; visibility:hidden;
+  transition:.25s ease;
+  z-index:50;
+}
+.modal.show{ opacity:1; visibility:visible }
+.modal-card{
+  width:min(92vw, 520px);
+  background:var(--soft);
+  border-radius:28px;
+  padding:22px 18px 18px;
+  box-shadow: var(--shadow);
+  border:4px solid #fff;
+  position:relative;
+  text-align:center;
+}
+.modal-card h2{
+  margin:8px 10px 4px;
+  line-height:1.2;
+}
+.modal-gif{
+  width:min(70vw, 360px);
+  height:auto;
+  margin:6px auto 10px;
+  border-radius:20px;
+  background:#fff;
+}
+.modal-actions{ display:flex; gap:12px; justify-content:center; margin-top:8px }
+.modal-close{
+  position:absolute; top:8px; right:10px;
+  background:transparent; border:0; font-size:28px; line-height:1; cursor:pointer;
+}
+
+/* 彩带 */
+#confetti{
+  pointer-events:none;
+  position:fixed; inset:0; overflow:hidden; z-index:40;
+}
+.confetti{
+  position:absolute;
+  width:10px; height:14px;
+  border-radius:3px;
+  animation: fall linear forwards;
+  opacity:.9;
+}
+@keyframes fall{
+  to{
+    transform: translate3d(var(--dx), 100vh, 0) rotate(720deg);
+    opacity:1;
+  }
+}
+
+/* 星星闪烁 */
+.mascot::after{
+  content:"✨";
+  position:absolute;
+  font-size:28px;
+  transform: translate(30px, -30px);
+  animation: twinkle 1.2s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes twinkle{
+  from{ opacity:.2; filter:drop-shadow(0 0 0 rgba(255,255,255,0)); }
+  to{ opacity:1; filter:drop-shadow(0 0 10px #fff); }
+}
+
+/* BGM 控制按钮 */
+.bgm-btn{
+  position: fixed;
+  top: 14px; left: 14px;
+  z-index: 60;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #eaf8ff, #cfefff);
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  font-weight: 700;
+  cursor: pointer;
+}
+.bgm-btn[aria-pressed="false"]{
+  background: linear-gradient(180deg, #f1f1f1, #e6e6e6);
+  opacity: .85;
+}
